@@ -5,38 +5,284 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+    <!-- navigation bar starts -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/" style="font-family: fantasy;font-size:25px;">Coursekiya</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+            <ul class="navbar-nav">
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-globe custom-icon"></i>&nbsp;Location
+                    </a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Hyderabad</a>
+                        <a class="dropdown-item" href="#">Bangalore</a>
+                        <a class="dropdown-item" href="#">Delhi</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- navigation bar ends -->
+    <div class="container-fluid">
+        <form action="" method="GET">
+            <div class="row searchAlignment">
+                <div class="col-xs-12 col-md-12 col-lg-12">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="customText" placeholder="What are you looking for?" id="txtSearch" />
+                        <button class="btn btn-primary customButton" id="btnSearch" type="submit">
+                            <span>Search</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        </form>
+    </div>
+
+    <div id="preloader"></div>
+
+    <div class="body-content" >
+        @RenderBody()
+        <hr />
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul>
+                        <li><a href="#!">Home</a></li>
+                        <li><a href="#!">About us</a></li>
+                        <li><a href="#!">Contact us</a></li>
+                        <li><a href="#!">How it works</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul>
+                        <li><a href="#!">Register</a></li>
+                        <li><a href="#!">Login</a></li>
+                        <li><a href="#!">List you Institute</a></li>
+                        <li><a href="#!">Know more..</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="Subscribe to Newsletters" id="txtNewsletter" />
+                        <button class="btn btn-primary" id="btnNewsletter" type="submit">
+                            <span>Subscribe</span>
+                        </button>
+                    </div>
+                    <div class="socialIcons">
+                        <label>Reach us @@ </label>
+                        <a href="#!" class="fa fa-twitter-square" title="twitter"></a>
+                        <a href="#!" class="fa fa-facebook-square" title="facebook"></a>
+                        <a href="#!" class="fa fa-google-plus-square" title="google plus"></a>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 text-center">
+                    <hr>
+                    <p class="text-white">
+                        &copy; Coursekiya, all rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- model popup -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="searchPOP">
+                                <label>You have searched for "<span id="lblselectedValue"></span>"</label>
+                            </div>
+                            <hr />
+                            <div id="screen1">
+                                <div class="form-group col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <h6 class="form-check-label">Select preferred course(s) from the list</h6>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk1" value="Java">
+                                            <label class="form-check-label">Java</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk2" value="J2EE">
+                                            <label class="form-check-label">J2EE</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk3" value="CoreJava">
+                                            <label class="form-check-label">Core Java</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk4" value="MVC">
+                                            <label class="form-check-label">MVC</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk5" value="AngularJs">
+                                            <label class="form-check-label">Angular Js</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk6" value="NodeJs">
+                                            <label class="form-check-label">Node Js</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk7" value="PHP">
+                                            <label class="form-check-label">PHP</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk8" value="Python">
+                                            <label class="form-check-label">Python</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk1" value="HtmlandCSS">
+                                            <label class="form-check-label">Html & CSS</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk2" value="UI/UX">
+                                            <label class="form-check-label">UI/UX</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk1" value="Android">
+                                            <label class="form-check-label">Android Apps</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk2" value="IOS">
+                                            <label class="form-check-label">IOS</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk1" value="Android">
+                                            <label class="form-check-label">Android Apps</label>
+                                        </div>
+                                        <div class="form-check col-md-6">
+                                            <input class="form-check-input" name="rdclassType" type="checkbox" id="chk2" value="IOS">
+                                            <label class="form-check-label">IOS</label>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="form-group text-right">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:left;">Close</button>
+
+                                        <button type="button" id="btnNextScreen1" class="btn btn-primary">
+                                            Next <i class="fa fa-angle-right"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div id="screen2">
+                                <div class="form-group">
+                                    <h6 class="form-check-label">what type of class you're looking for?</h6>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="rdclassType" type="radio" id="rd1" value="online">
+                                        <label class="form-check-label">online</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="rdclassType" type="radio" id="rd2" value="classroom">
+                                        <label class="form-check-label">Class room</label>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                    <h6 class="form-check-label">what are you're preferred timings?</h6>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="rdTiming" type="radio" id="rd1" value="anytime">
+                                        <label class="form-check-label">Any time</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="rdTiming" type="radio" id="rd2" value="Weekdays">
+                                        <label class="form-check-label">Weekdays</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="rdTiming" type="radio" id="rd3" value="Weekends">
+                                        <label class="form-check-label">Weekends</label>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                    <h6 class="form-check-label">to whom training is required?</h6>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="rdTraining" type="radio" id="rd1" value="individual">
+                                        <label class="form-check-label">Individual</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" name="rdTraining" type="radio" id="rd2" value="organisation">
+                                        <label class="form-check-label">Organisation</label>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group text-right">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:left;">Close</button>
+                                    <button type="button" class="btn btn-primary" id="btnBackScreen2">
+                                        <i class="fa fa-angle-left"></i> Back
+                                    </button>
+                                    <button type="button" id="btnNextScreen2" class="btn btn-primary">
+                                        Next <i class="fa fa-angle-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="screen3">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter full name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Mobile No</label>
+                                        <input type="text" class="form-control" id="phone" aria-describedby="phone" placeholder="Enter email">
+                                    </div>
+                                </form>
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email & mobile no with anyone without your permission.</small>
+                                <div class="">
+                                    <input type="checkbox" id="agree">
+                                    <label for="agree">Yes, I would like to share my details for better results</label>
+                                </div>
+                                <hr />
+                                <div class="form-group text-right">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:left;">Close</button>
+                                    <button type="button" class="btn btn-primary" id="btnBackScreen3">
+                                        <i class="fa fa-angle-left"></i> Back
+                                    </button>
+                                    <button type="button" id="btnNextScreen3" class="btn btn-primary">
+                                        Finish <i class="fa fa-angle-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    <!-- model popup -->
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/scripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>

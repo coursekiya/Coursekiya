@@ -1,0 +1,226 @@
+body {
+    background-color: #eee;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+.searchAlignment {
+    padding: 10px 35px;
+}
+
+    .searchAlignment input:focus {
+        box-shadow: 0 0 0 0.1rem #ccc !important;
+    }
+
+.customText {
+    display: block;
+    width: 85%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 2.0;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
+.customButton {
+    border-radius: 0px;
+    width: 15% !important;
+}
+
+#icoLocation {
+    font-size: 20px;
+}
+
+.container {
+    width: 95% !important;
+}
+
+.modal {
+    top: 15%;
+}
+
+.searchPOP {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #4f6479;
+}
+
+/* swiper classes */
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+
+/* for stick screen in list page */
+/* #sticky-sidebar {
+    position: relative;
+    max-width: 20%;
+} */
+
+.rowCard {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+    .rowCard img {
+        width: 100%;
+        min-height: 150px;
+        max-height: 170px;
+    }
+
+    .rowCard p {
+        font-size: 14px;
+        line-height: 1.5rem;
+    }
+
+.footer {
+    position: relative;
+    margin-top: 50px; /* negative value of footer height */
+    height: auto;
+    clear: both;
+    padding-top: 20px;
+    background: #343a40;
+}
+
+    .footer ul {
+        list-style-type: none;
+    }
+
+    .footer a {
+        color: #fff;
+    }
+
+.socialIcons {
+    color: #fff;
+    padding: 20px;
+    margin: 0px;
+}
+
+    .socialIcons a {
+        font-size: 30px;
+    }
+
+.details {
+    border: 1px solid #ccc;
+    /*margin: 20px;*/
+    padding: 20px;
+}
+
+.modal .form-group label {
+    margin-bottom: 0rem !important;
+}
+
+/* carousel */
+.carousel-item img {
+    width: 100%;
+    height: 450px;
+    opacity: 0.6;
+}
+
+.carousel-text {
+    color: #000;
+    text-align: left;
+}
+
+/* Style the header */
+.header {
+    padding: 10px 50px;
+    background: #fff;
+    color: #000;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+/* .sticky + .content {
+    padding-top: 102px;
+  } */
+
+.bgImg {
+    background-image: url("../images/img1.jpeg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 0.9s;
+    /*-webkit-filter: blur(1.5px);*/ /* Safari 6.0 - 9.0 */
+    /*filter: blur(1.5px);*/
+}
+
+.courseBadges span {
+    font-size: 16px;
+}
+
+/* Bottom right text */
+.text-block {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    background-color: #343a40;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.cardDetails {
+    width: 100%;
+    margin: 1%;
+}
+
+/*adding z-index stop autocomplete list*/
+
+.ui-menu .ui-widget .ui-widget-content .ui-autocomplete {
+    z-index: 999;
+}
+
+#preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000000000;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    background: #ddd url('../images/preloader/loading.gif') no-repeat center center;
+}
